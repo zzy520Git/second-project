@@ -10,6 +10,7 @@
     <module>second-project-domain</module>
     <module>second-project-dao</module>
     <module>second-project-service</module>
+    <module>second-project-manager</module>
   </modules>
   <packaging>pom</packaging>
 
