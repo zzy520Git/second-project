@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+  <!--导入属性配置-->
+  <properties resource="datasource.properties"></properties>
+
+  <!-- !!!! Driver Class Path !!!! -->
+  <classPathEntry location="${db.driverLocation}"/>
+
+  <context id="context" targetRuntime="MyBatis3">
+      <commentGenerator>
+          <property name="suppressAllComments" value="true"/>
+          <property name="suppressDate" value="true"/>
+      </commentGenerator>
+
+      <!-- !!!! Database Configurations !!!! -->
+      <jdbcConnection
+            driverClass="${db.driverClassName}"
+            connectionURL="${db.url}"
+            userId="${db.username}"
+            password="${db.password}">
+      </jdbcConnection>
+
+      <javaTypeResolver>
+          <property name="forceBigDecimals" value="false"/>
+      </javaTypeResolver>
+
+      <!-- !!!! Model Configurations !!!! -->
+      <javaModelGenerator targetPackage="com.jd.secondproject.domain" targetProject="./src/main/java">
+        <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+        <property name="enableSubPackages" value="false"/>
+        <!-- 是否对model添加 构造函数 -->
+        <!--<property name="constructorBased" value="true"/>-->
+        <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+        <property name="trimStrings" value="true"/>
+        <!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 -->
+        <!--<property name="immutable" value="false"/>-->
+      </javaModelGenerator>
+
+      <!-- !!!! Mapper XML Configurations !!!! -->
+      <sqlMapGenerator targetPackage="mapper" targetProject="./src/main/resources">
+          <property name="enableSubPackages" value="false"/>
+      </sqlMapGenerator>
+
+      <!-- !!!! Mapper Interface Configurations !!!! -->
+      <javaClientGenerator targetPackage="com.jd.secondproject.dao" targetProject="./src/main/java" type="XMLMAPPER">
+          <property name="enableSubPackages" value="false"/>
+      </javaClientGenerator>
+
+      <!-- !!!! Table Configurations !!!! -->
+      <table tableName="rent_broker_staff" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
+             enableUpdateByExample="true"/>
+      <table tableName="user" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
+             enableUpdateByExample="true"/>
+  </context>
+</generatorConfiguration>
