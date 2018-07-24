@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="GBK"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
@@ -11,24 +11,24 @@
 
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
       <property name="dataSource" ref="dataSource"/>
-      <!-- ²»ÔÚÍ¬Ò»¸ö°üÏÂÐèÒªÅäÖÃ -->
+      <!-- ä¸åœ¨åŒä¸€ä¸ªåŒ…ä¸‹éœ€è¦é…ç½® -->
       <property name="mapperLocations" value="classpath:mapper/*.xml"/>
       <property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
   </bean>
 
-  <!-- ¿ªÆô×¢½âÊÂÎñ-->
-  <!-- ÊÂÎñ¿ªÆô£¬Ä¬ÈÏÊ¹ÓÃÃûÎªtransactionManagerµÄBean´¦Àí -->
+  <!-- å¼€å¯æ³¨è§£äº‹åŠ¡-->
+  <!-- äº‹åŠ¡å¼€å¯ï¼Œé»˜è®¤ä½¿ç”¨åä¸ºtransactionManagerçš„Beanå¤„ç† -->
   <tx:annotation-driven/>
   <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
       <property name="dataSource" ref="dataSource"/>
   </bean>
 
-  <!-- MapperÉ¨ÃèÆ÷ -->
+  <!-- Mapperæ‰«æå™¨ -->
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <!-- ÒªÇó*Mapper.xmlºÍ*Mapper.javaÎÄ¼þÔÚÒ»¸ö°üÄÚ£¬Ê¹ÓÃmapperÉ¨Ãè -->
-    <!-- ¶à¸ö°üÓÃ¶ººÅ»ò·ÖºÅ·Ö¸ô£¬»á¼ÓÔØ¸Ã°ü¼°Æä×Ó°ü -->
+    <!-- è¦æ±‚*Mapper.xmlå’Œ*Mapper.javaæ–‡ä»¶åœ¨ä¸€ä¸ªåŒ…å†…ï¼Œä½¿ç”¨mapperæ‰«æ -->
+    <!-- å¤šä¸ªåŒ…ç”¨é€—å·æˆ–åˆ†å·åˆ†éš”ï¼Œä¼šåŠ è½½è¯¥åŒ…åŠå…¶å­åŒ… -->
     <property name="basePackage" value="com.jd.secondproject.dao"/>
-    <!-- Èç¹û²»ÔÚÍ¬Ò»¸ö°ü£¬ÏÂÃæproperty²»ÓÃÅäÖÃ -->
+    <!-- å¦‚æžœä¸åœ¨åŒä¸€ä¸ªåŒ…ï¼Œä¸‹é¢propertyä¸ç”¨é…ç½® -->
     <!--
     <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     -->

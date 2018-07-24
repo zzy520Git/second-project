@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="GBK"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -10,19 +10,25 @@
             http://www.springframework.org/schema/mvc
             http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+  <!--
+    è¯¥æ³¨è§£é©±åŠ¨çš„ä½œç”¨ï¼š
+    1.å¯ä»¥ä¸ç”¨é…ç½®JSONè½¬æ¢å™¨Bean
+    2.
+  -->
   <mvc:annotation-driven/>
+
+  <!-- åªæ‰«æController -->
   <context:component-scan base-package="com.jd.secondproject.web.controller"/>
 
-  <!-- jspÊÓÍ¼½âÎöÆ÷£¬¿ÉÑ¡ÅäÖÃ£¬Ä¬ÈÏÒÑ¾­¼ÓÔØ -->
+  <!-- JSPè§†å›¾è§£æžå™¨ï¼Œå¯é€‰é…ç½®ï¼Œé»˜è®¤å·²ç»åŠ è½½ -->
   <mvc:view-resolvers>
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
   </mvc:view-resolvers>
-  <!-- ÎÄ¼þÉÏ´« -->
-  <!-- ¿ÉÄÜ»¹ÐèÒªÔÚÇ°¶ËÒ³ÃæÅäÖÃmultipart/form-data
+
+  <!-- æ–‡ä»¶ä¸Šä¼ ï¼šå‰ç«¯é¡µé¢å¦‚æžœæ˜¯è¡¨å•ï¼Œåˆ™è¡¨å•éœ€è¦é…ç½®multipart/form-data -->
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <property name="defaultEncoding" value="UTF-8"/>
       <property name="maxUploadSize" value="400000000"/>
   </bean>
-    -->
 
 </beans>
