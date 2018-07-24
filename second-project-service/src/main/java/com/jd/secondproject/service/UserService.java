@@ -7,4 +7,6 @@ import com.jd.secondproject.vo.UserVo;
  */
 public interface UserService {
     UserVo queryById(long id) ;
+
+    int insertNoTransaction() ;
 }

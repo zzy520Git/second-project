@@ -18,7 +18,7 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
   </mvc:view-resolvers>
   <!-- 文件上传 -->
-  <!--
+  <!-- 可能还需要在前端页面配置multipart/form-data
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
       <property name="defaultEncoding" value="UTF-8"/>
       <property name="maxUploadSize" value="400000000"/>
