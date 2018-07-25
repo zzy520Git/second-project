@@ -1,17 +1,20 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.10.2.min.js"/>
 <script type="text/javascript">
-    function requestJson(var cond) {
-
+    function requestJson(var param) {
+        if(param==1) {
+        }
     }
 </script>
 
 <body>
 <input type="button" onclick="requestJson(1)" value="测试requestJson2Pojo"/>
 <input type="button" onclick="requestJson(2)" value="测试requestJson2Param"/>
-</for>
-<input type="text" name="id" value="${}"/>
-<input type="text" name="username" value="$!{}"/>
-<input type="submit" value="提交表单"/>
+<form action="/json/requestJson2Pojo" method="post" enctype="multipart/form-data">
+    <label>用户ID</label><input type="text" name="id" value="${}"/>
+    <label>用户名</label><input type="text" name="username" value="$!{}"/>
+    <label>密码</label><input type="text" name="password" value="$!{}"/>
+    <label>上传证件照</label><input type="file" name="file">
+    <input type="submit" value="提交表单"/>
 </form>
 </body>
