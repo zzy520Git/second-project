@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ModelController {
     @RequestMapping("/toIndex")
     public String toIndex() {
-        int a = 1 ;
         return "index" ;
     }
 }

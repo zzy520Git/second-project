@@ -24,13 +24,14 @@
   <!-- velocity模板配置和视图解析器配置 -->
   <bean id="velocityConfigurer"
         class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+    <!-- 所有的vm模板文件都放在此目录内 -->
     <property name="resourceLoaderPath" value="/WEB-INF/vm/"/>
-    <property name="configLocation" value="classpath:/conf/velocity.properties"/>
+    <property name="configLocation" value="classpath:conf/velocity.properties"/>
   </bean>
   <bean id="velocityViewResolver"
-        class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
     <property name="cache" value="false"/><!--是否缓存模板 -->
-    <property name="prefix" value="/WEB-INF/vm/"/>
+    <property name="prefix" value="/"/><!-- 可省默认值，不要更改-->
     <property name="suffix" value=".vm"/>
     <property name="contentType" value="text/html;charset=UTF-8"/>
     <property name="dateToolAttribute" value="date"/><!--日期函数名称 -->
@@ -38,9 +39,8 @@
     <property name="exposeSpringMacroHelpers" value="true"/><!--是否使用spring对宏定义的支持 -->
     <property name="exposeRequestAttributes" value="true"/><!--是否开放request属性 -->
     <property name="requestContextAttribute" value="rc"/><!--request属性引用名称 -->
-    <!--
-    <property name="layoutUrl" value="/WEB-INF/vm/layout/default.vm"/>
-    -->
+    <!-- 相对于resourceLoaderPath的路径 -->
+    <property name="layoutUrl" value="layout/default.vm"/>
     <property name="order" value="2"/> <!--权重-->
     <property name="toolboxConfigLocation" value="/WEB-INF/tools.xml"/>
   </bean>

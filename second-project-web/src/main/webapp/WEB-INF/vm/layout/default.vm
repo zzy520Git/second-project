@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
-    #parse("/WEB-INF/vm/common/head.vm")
+    <!-- 使用的相对路径 -->
+    #parse("common/head.vm")
 <body>
     $screen_content
+<h1>default.vm默认模板在这里</h1>
 </body>
 </html>
