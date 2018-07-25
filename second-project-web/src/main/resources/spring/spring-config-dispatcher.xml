@@ -21,31 +21,14 @@
   <!-- 只扫描Controller -->
   <context:component-scan base-package="com.jd.secondproject.web.controller"/>
 
-  <!-- JSP视图解析器，可选配置，默认已经加载 -->
-  <!--
-  <mvc:view-resolvers>
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
-  </mvc:view-resolvers>
-  -->
+  <!-- velocity模板配置和视图解析器配置 -->
   <bean id="velocityConfigurer"
         class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
     <property name="resourceLoaderPath" value="/WEB-INF/vm/"/>
-    <!-- 等价于配置下面velocityProperties属性，选其一即可
     <property name="configLocation" value="classpath:/conf/velocity.properties"/>
-    -->
-    <property name="velocityProperties">
-      <props>
-        <prop key="input.encoding">UTF-8</prop>
-        <prop key="output.encoding">UTF-8</prop>
-        <prop key="contentType">text/html;charset=UTF-8</prop>
-        <!--
-        <prop key="velocimacro.library">common/macro.vm</prop>
-        -->
-      </props>
-    </property>
   </bean>
   <bean id="velocityViewResolver"
-        class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
     <property name="cache" value="false"/><!--是否缓存模板 -->
     <property name="prefix" value="/WEB-INF/vm/"/>
     <property name="suffix" value=".vm"/>
@@ -55,7 +38,9 @@
     <property name="exposeSpringMacroHelpers" value="true"/><!--是否使用spring对宏定义的支持 -->
     <property name="exposeRequestAttributes" value="true"/><!--是否开放request属性 -->
     <property name="requestContextAttribute" value="rc"/><!--request属性引用名称 -->
-    <property name="layoutUrl" value="/WEB-INF/vm/common/default.vm"/><!--指定layout文件 -->
+    <!--
+    <property name="layoutUrl" value="/WEB-INF/vm/layout/default.vm"/>
+    -->
     <property name="order" value="2"/> <!--权重-->
     <property name="toolboxConfigLocation" value="/WEB-INF/tools.xml"/>
   </bean>

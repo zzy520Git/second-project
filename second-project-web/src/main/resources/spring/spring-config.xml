@@ -30,4 +30,5 @@
 
     <!--引入Spring配置文件-->
     <import resource="spring-config-dao.xml"/>
+
 </beans>
