@@ -10,4 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/model")
 public class ModelController {
+    @RequestMapping("/toIndex")
+    public String toIndex() {
+        return "index" ;
+    }
 }
