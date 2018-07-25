@@ -4,6 +4,7 @@ import com.jd.secondproject.vo.UserVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * created by zhouzhongyi on 2018/7/24
@@ -26,6 +27,14 @@ public class JsonController {
      */
     @RequestMapping("/requestJson2Param")
     public void requestJson2Param(Integer id, String username) {
+
+    }
+
+    /**
+     * 请求的是表单
+     */
+    @RequestMapping(value = "/requestForm", method = RequestMethod.POST)
+    public void requestForm(Integer id, String username) {
 
     }
 }

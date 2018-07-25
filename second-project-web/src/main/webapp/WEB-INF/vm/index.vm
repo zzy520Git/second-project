@@ -1,3 +1,3 @@
 
 velocity首页
-
+<label>数据回显查看</label><input type="text" name="key" value="${key}"/>

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <!-- 使用的相对路径 -->
-    #parse("common/head.vm")
+    #include("common/head.vm")
 <body>
     $screen_content
-<h1>default.vm默认模板在这里</h1>
+<h1>default.vm默认模板在这里。！</h1>
 </body>
 </html>
