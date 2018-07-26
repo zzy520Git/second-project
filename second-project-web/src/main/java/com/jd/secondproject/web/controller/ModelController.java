@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * created by zhouzhongyi on 2018/7/24
@@ -18,9 +19,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/model")
 public class ModelController {
+    /**
+     * springmvc其他常用注解
+     * @RequestParam用于参数绑定、@ModelAttribute用于数据回显
+     */
 
     @Value("${org.spring.version.key}")
     private String testValue ;
+
     /**
      * 当返回值是字符串型时，返回的是逻辑视图名
      * @return 逻辑视图页面名
@@ -42,9 +48,17 @@ public class ModelController {
         return modelAndView ;
     }
 
+    /**
+     * 返回void类型时，只能通过传统servlet方式操作视图，作用较小，已很少使用
+     */
     @RequestMapping("/toIndex2")
-    public void toIndex2(ModelMap modelMap) {
+    public void toIndex2(ModelMap modelMap, HttpServletResponse response) {
         modelMap.addAttribute("key", "value2") ;
+        try {
+            response.sendRedirect("toIndex");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
