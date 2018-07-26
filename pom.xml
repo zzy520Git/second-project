@@ -134,12 +134,14 @@
       <version>2.4</version>
     </dependency>
 
-    <!-- 功能包含StringUtils -->
+    <!-- 功能包含StringUtils，目前spring框架也有StringUtils -->
+    <!--
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.4</version>
     </dependency>
+    -->
 
     <!-- velocity -->
     <dependency>

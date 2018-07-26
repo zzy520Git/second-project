@@ -1,7 +1,7 @@
 package com.jd.secondproject.web.controller;
 
 import com.jd.secondproject.domain.User;
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,7 +73,7 @@ public class JsonController {
         //文件上传
         if(img != null) {
             String originalFilename = img.getOriginalFilename();
-            if(StringUtils.isNotBlank(originalFilename)) {
+            if(StringUtils.hasLength(originalFilename)) {
                 String suffix = originalFilename.substring(originalFilename.lastIndexOf(".")) ;
                 File f = new File("D:\\"+UUID.randomUUID().toString()+suffix) ;
                 try {
