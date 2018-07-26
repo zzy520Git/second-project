@@ -15,9 +15,7 @@
       <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!-- 用于支持访问静态资源，因为dispatcher的url映射配置的"/" -->
     <mvc:annotation-driven/>
-    <mvc:default-servlet-handler/>
 
     <!--加载配置文件-->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

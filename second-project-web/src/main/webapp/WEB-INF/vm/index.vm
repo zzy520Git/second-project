@@ -1,3 +1,10 @@
 
 velocity首页
 <label>数据回显查看</label><input type="text" name="key" value="${key}"/>
+
+
+<script type="text/javascript" src="/js/test.js"></script>
+<!--
+注意：js的单标签是无法加载的，必须使用闭合标签
+<script type="text/javascript" src="/js/test.js"/>
+-->

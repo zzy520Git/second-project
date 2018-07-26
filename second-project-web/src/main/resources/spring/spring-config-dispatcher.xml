@@ -18,6 +18,13 @@
   -->
   <mvc:annotation-driven/>
 
+  <!-- 用于支持访问静态资源，因为dispatcher的url映射配置的"/" -->
+  <mvc:default-servlet-handler/>
+  <!-- 上面等价于配置静态资源的映射不经过前端控制器 -->
+  <!--
+  <mvc:resources mapping="/assets/**" location="/assets/"/>
+  -->
+
   <!-- 只扫描Controller -->
   <context:component-scan base-package="com.jd.secondproject.web.controller"/>
 
