@@ -1,5 +1,6 @@
 package com.jd.secondproject.web.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,12 +18,16 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/model")
 public class ModelController {
+
+    @Value("${org.spring.version.key}")
+    private String testValue ;
     /**
      * 当返回值是字符串型时，返回的是逻辑视图名
      * @return 逻辑视图页面名
      */
     @RequestMapping("/toIndex")
     public String toIndex(Model model, HttpServletRequest request) {
+        System.out.println("testValue:" + testValue);
         model.addAttribute("key", "value") ;
         System.out.println("间接请求参数:" + request.getParameter("id"));
         return "index" ;

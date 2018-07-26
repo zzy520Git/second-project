@@ -28,6 +28,9 @@
   <!-- 只扫描Controller -->
   <context:component-scan base-package="com.jd.secondproject.web.controller"/>
 
+  <!-- 读取配置文件用于Controller中的属性注入 -->
+  <context:property-placeholder location="classpath:conf/controllerConfig.properties"/>
+
   <!-- velocity模板配置和视图解析器配置 -->
   <bean id="velocityConfigurer"
         class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">

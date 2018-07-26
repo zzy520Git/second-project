@@ -9,4 +9,6 @@ public interface UserService {
     UserVo queryById(long id) ;
 
     int insertNoTransaction() ;
+
+    String getValueProperties() ;
 }

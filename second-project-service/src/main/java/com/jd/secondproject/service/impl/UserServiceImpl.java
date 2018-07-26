@@ -6,6 +6,7 @@ import com.jd.secondproject.service.UserService;
 import com.jd.secondproject.vo.UserVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -18,6 +19,9 @@ import java.io.UnsupportedEncodingException;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper ;
+
+    @Value("${workstation.jdbc.driver.master}")
+    private String valueProperties ;
 
     @Override
     public UserVo queryById(long id) {
@@ -44,4 +48,11 @@ public class UserServiceImpl implements UserService {
 
         return 0 ;
     }
+
+    @Override
+    public String getValueProperties() {
+        return valueProperties;
+    }
+
+
 }
