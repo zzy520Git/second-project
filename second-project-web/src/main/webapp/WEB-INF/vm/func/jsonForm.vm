@@ -1,20 +1,72 @@
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery-1.10.2.min.js"/>
 <script type="text/javascript">
-    function requestJson(var param) {
+    function requestJson(param) {
         if(param==1) {
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: "/json/requestJson2Pojo",
+                data: {
+                    id:666,
+                    username:"zzy",
+                    password:"#@$"
+                },
+                dataType: "json",
+                success: function (data) {
+                    alert(data.id + ":" + data.username + ":" + data.password) ;
+                },
+                error: function () {
+                    alert("ajax请求失败") ;
+                }
+            });
+        }
+        else if(param==2) {
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: "/json/requestJson2Param",
+                data: {
+                    id:888,
+                    username:"zzy1"
+                },
+                dataType: "json",
+                success: function (data) {
+                    alert(data.id) ;
+                },
+                error: function () {
+                    alert("ajax请求失败") ;
+                }
+            });
+        }
+        else if(param==3) { //此种方法极易出错，限制太多，已很少使用
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: "/json/requestJsonString2Pojo",
+                //默认是application/x-www-form-urlencoded;charset=UTF-8
+                contentType:"application/json;charset=utf-8",
+                //注意json字符串不能换行
+                data: '{"id":"666","username":"zzy","password":"#@$"}',
+                dataType: "json",
+                success: function (data) {
+                    alert(data.id + ":" + data.username + ":" + data.password) ;
+                },
+                error: function () {
+                    alert("ajax请求失败") ;
+                }
+            });
         }
     }
 </script>
 
-<body>
-<input type="button" onclick="requestJson(1)" value="测试requestJson2Pojo"/>
-<input type="button" onclick="requestJson(2)" value="测试requestJson2Param"/>
-<form action="/json/requestJson2Pojo" method="post" enctype="multipart/form-data">
-    <label>用户ID</label><input type="text" name="id" value="${}"/>
-    <label>用户名</label><input type="text" name="username" value="$!{}"/>
-    <label>密码</label><input type="text" name="password" value="$!{}"/>
-    <label>上传证件照</label><input type="file" name="file">
+<input type="button" onclick="requestJson(1)" value="测试requestJson2Pojo"/><br>
+<input type="button" onclick="requestJson(2)" value="测试requestJson2Param"/><br>
+<input type="button" onclick="requestJson(3)" value="测试requestJsonString2Pojo"/><br>
+<form action="/json/requestForm" method="post" enctype="multipart/form-data">
+    <label>用户ID</label><input type="text" name="id" value="$!{user.id}"/>
+    <label>用户名</label><input type="text" name="username" value="$!{user.username}"/>
+    <label>密码</label><input type="password" name="password" value="$!{user.password}"/>
+    <label>上传证件照</label><input type="file" name="img">
     <input type="submit" value="提交表单"/>
 </form>
-</body>
+

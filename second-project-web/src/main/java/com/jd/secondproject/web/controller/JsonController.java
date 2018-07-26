@@ -1,10 +1,17 @@
 package com.jd.secondproject.web.controller;
 
-import com.jd.secondproject.vo.UserVo;
+import com.jd.secondproject.domain.User;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * created by zhouzhongyi on 2018/7/24
@@ -13,28 +20,74 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/json")
 public class JsonController {
+
     /**
-     * 请求的是JSON串，自动转为java对象需要使用@RequestBody注解，另外请求参数和pojo包装类中的属性名需一致
-     * @param vo 形参名随意，但建议是类名首字母小写
+     * 返回值是字符串类型时，只能是逻辑视图名
+     * @return
+     */
+    @RequestMapping("/toJson")
+    public String toJson() {
+        return "func/jsonForm" ;
+    }
+
+    /**
+     * 请求的是JSON对象，请求参数和pojo包装类中的属性名需一致，自动绑定
+     * @param user 形参名随意，但建议是类名首字母小写
      */
     @RequestMapping("/requestJson2Pojo")
-    public void requestJson2Pojo(@RequestBody UserVo vo) {
-
+    @ResponseBody
+    public User requestJson2Pojo(User user) {
+        return user ;
     }
 
     /**
-     * 请求的是JSON串，需要请求参数和形参名一致才能绑定
+     * 请求的是JSON对象，需要请求参数和形参名一致才能绑定
      */
     @RequestMapping("/requestJson2Param")
-    public void requestJson2Param(Integer id, String username) {
-
+    @ResponseBody
+    public User requestJson2Param(Long id, String username) {
+        User user = new User() ;
+        user.setUsername(username);
+        user.setId(id);
+        return user ;
     }
 
     /**
-     * 请求的是表单
+     * 请求的是JSON字符串(注意：前端配置不同)，请求参数和pojo包装类中的属性名需一致，而且需要@RequestBody
+     * 此类用法已很少使用
+     */
+    @RequestMapping("/requestJsonString2Pojo")
+    @ResponseBody
+    public User requestJsonString2Pojo(@RequestBody User user) {
+        return user ;
+    }
+
+    /**
+     * 请求的是表单,数据回显形参名尽量类名首字母小写,因为默认是调用addObject("小写key",obj)
+     * 而且表单提交方法不能返回void
      */
     @RequestMapping(value = "/requestForm", method = RequestMethod.POST)
-    public void requestForm(Integer id, String username) {
+    public String requestForm(User user, MultipartFile img) {
+        System.out.println(user.getUsername());
 
+        //文件上传
+        if(img != null) {
+            String originalFilename = img.getOriginalFilename();
+            if(StringUtils.isNotBlank(originalFilename)) {
+                String suffix = originalFilename.substring(originalFilename.lastIndexOf(".")) ;
+                File f = new File("D:\\"+UUID.randomUUID().toString()+suffix) ;
+                try {
+                    img.transferTo(f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                System.out.println("文件上传有误");
+            }
+        }
+
+        //转发时，请求参数和回显数据都不会丢失
+        return "forward:toJson" ;
     }
 }

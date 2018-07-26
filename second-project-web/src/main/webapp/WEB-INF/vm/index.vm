@@ -1,10 +1,27 @@
 
 velocity首页
 <label>数据回显查看</label><input type="text" name="key" value="${key}"/>
-
+<!-- 注意：onclick属性调用函数必须加括号，如testProp()而不是testProp -->
+<button mydata="zzy" onclick="testProp()" id="china" class="myscc">测试jquery的prop方法能否获取自定义属性和固有属性</button>
 
 <script type="text/javascript" src="/js/test.js"></script>
 <!--
-注意：js的单标签是无法加载的，必须使用闭合标签
+注意：js的如下单标签是无法加载的，必须使用闭合标签
 <script type="text/javascript" src="/js/test.js"/>
 -->
+
+<script type="text/javascript">
+    function testProp() {
+        //对于自定义属性必须使用attr获取和设置
+        var str = $("#china").attr("mydata") ;
+        //对于固有属性也可以使用prop，但是对于checked和disable和selected等布尔属性必须使用prop
+        var id = $("#china").prop("id") ;
+        alert(id + ": " + str) ;
+    }
+</script>
+<style type="text/css">
+    .myscc{
+        color: aqua;
+        background: black;
+    }
+</style>
