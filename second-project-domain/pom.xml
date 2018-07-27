@@ -19,6 +19,6 @@
 
 
   <build>
-    <finalName>second-project-domain</finalName>
+    <finalName>${project.artifactId}</finalName>
   </build>
 </project>

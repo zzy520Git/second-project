@@ -175,6 +175,12 @@
   <build>
     <plugins>
       <plugin>
+        <!-- war插件 -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
@@ -184,6 +190,58 @@
           <encoding>${project.build.sourceEncoding}</encoding>
         </configuration>
       </plugin>
+
+      <!-- 使用pom文件中的profile需要这个语句配置 -->
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+
+      <!-- 配置构建时忽略测试用例 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <!-- 开发环境 -->
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <config>dev</config>
+      </properties>
+    </profile>
+    <!-- 测试环境 -->
+    <profile>
+      <id>test</id>
+      <properties>
+        <config>test</config>
+      </properties>
+    </profile>
+    <!-- 预发环境 -->
+    <profile>
+      <id>prepublish</id>
+      <properties>
+        <config>prepublish</config>
+      </properties>
+    </profile>
+    <!-- 生产环境 -->
+    <profile>
+      <id>production</id>
+      <properties>
+        <config>production</config>
+      </properties>
+    </profile>
+  </profiles>
 </project>

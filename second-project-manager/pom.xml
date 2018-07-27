@@ -28,6 +28,6 @@
 
   </dependencies>
   <build>
-    <finalName>second-project-manager</finalName>
+    <finalName>${project.artifactId}</finalName>
   </build>
 </project>

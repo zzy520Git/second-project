@@ -26,6 +26,6 @@
 
   </dependencies>
   <build>
-    <finalName>second-project-service</finalName>
+    <finalName>${project.artifactId}</finalName>
   </build>
 </project>

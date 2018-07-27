@@ -25,3 +25,14 @@ velocity首页
         background: black;
     }
 </style>
+
+<select id="type" name="type0" disabled>
+    <option value="1">china</option>
+    <option value="2" selected>japan</option>
+</select>
+<button onclick="testSelect()">测试多选框禁用时能否得到值</button>
+<script type="text/javascript">
+    function testSelect() {
+        alert($("#type").val()) ;
+    }
+</script>
