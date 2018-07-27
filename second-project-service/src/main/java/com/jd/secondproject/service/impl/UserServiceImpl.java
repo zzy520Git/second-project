@@ -34,18 +34,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public int insertNoTransaction() {
         User a = new User() ;
-        a.setUsername("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        a.setUsername("china###japan");
+        a.setId(100L);
+        String key = null ;
         try {
-            String key = DigestUtils.md5DigestAsHex("password".getBytes("UTF-8")) ;
+            key = DigestUtils.md5DigestAsHex("password".getBytes("UTF-8")) ;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        a.setPassword(key);
         userMapper.insertSelective(a) ;
-//        User b = new User() ;
-//        b.setUsername("b");
-//        userMapper.insertSelective(b) ;
-//        int ab = 0 ;
-
         return 0 ;
     }
 

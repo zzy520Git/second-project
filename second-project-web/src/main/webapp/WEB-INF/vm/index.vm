@@ -1,6 +1,6 @@
 
 velocity首页
-<label>数据回显查看</label><input type="text" name="key" value="${key}"/>
+<label>数据回显查看</label><input type="text" name="key" value="$!{key}"/>
 <!-- 注意：onclick属性调用函数必须加括号，如testProp()而不是testProp -->
 <button mydata="zzy" onclick="testProp()" id="china" class="myscc">测试jquery的prop方法能否获取自定义属性和固有属性</button>
 

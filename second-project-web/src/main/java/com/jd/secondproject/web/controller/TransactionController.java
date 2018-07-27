@@ -2,6 +2,7 @@ package com.jd.secondproject.web.controller;
 
 import com.jd.secondproject.manager.UserManager;
 import com.jd.secondproject.service.UserService;
+import com.jd.secondproject.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,17 +27,19 @@ public class TransactionController {
 
     @RequestMapping("/queryByService")
     public ModelAndView queryByService() {
-        //UserVo result = userService.queryById(1) ;
-        //userService.insertNoTransaction() ;
+        UserVo result = userService.queryById(1) ;
+        userService.insertNoTransaction() ;
         ModelAndView modelAndView = new ModelAndView("index") ;
+        modelAndView.addObject("result", result) ;
         System.out.println("啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n\n啊啊啊啊啊啊啊啊啊啊啊啊");
         return modelAndView;
     }
 
     @RequestMapping("/queryByManager")
     public ModelAndView queryByManager() {
-        //UserVo result = userService.queryById(1) ;
-        //userManager.testTransaction();
+        UserVo result = userService.queryById(1) ;
+        userManager.testTransaction();
+        System.out.println(result.getUsername());
         ModelAndView modelAndView = new ModelAndView("index") ;
         System.out.println("啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n\n啊啊啊啊啊啊啊啊啊啊啊啊");
         return modelAndView;
