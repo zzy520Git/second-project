@@ -1,5 +1,6 @@
 package com.jd.secondproject.converter;
 
+import com.util.DateFormatUtil;
 import org.springframework.core.convert.converter.Converter;
 
 import java.text.ParseException;
@@ -16,8 +17,7 @@ public class CustomDateConverter implements Converter<String, Date> {
     @Override
     public Date convert(String s) {
         //实现将日期串转成日期类型(格式是yyyy-MM-dd HH:mm:ss)
-        //注意，SimpleDateFormat不是线程安全的，需纠正
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = DateFormatUtil.synchronizedSimpleDateFormat() ;
         try {
             return simpleDateFormat.parse(s);
         } catch (ParseException e) {
