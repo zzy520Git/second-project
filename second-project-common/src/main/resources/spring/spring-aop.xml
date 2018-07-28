@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+  <!-- 启动@AspectJ支持 -->
+  <aop:aspectj-autoproxy/>
+  <!-- 与上面功能相同，都是启用@AspectJ支持，选择其一即可
+  <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>
+  -->
+
+  <!-- 可以用分号分隔多个包，也可用逗号 -->
+  <context:component-scan base-package="com.spring.aop; com.spring.serviceimpl">
+    <!-- 必须加入下面这句，否则对于注解@Aspect无法被认为是Bean。或者用xml的配置bean的方式 -->
+    <context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+  </context:component-scan>
+
+
+</beans>
