@@ -1,5 +1,6 @@
 package com.jd.secondproject.service;
 
+import com.common.ResponseResult;
 import com.jd.secondproject.vo.UserVo;
 
 /**
@@ -11,4 +12,6 @@ public interface UserService {
     int insertNoTransaction() ;
 
     String getValueProperties() ;
+
+    ResponseResult modelJD(Integer parameter) ;
 }

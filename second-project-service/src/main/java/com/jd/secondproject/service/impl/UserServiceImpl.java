@@ -1,9 +1,12 @@
 package com.jd.secondproject.service.impl;
 
+import com.common.ResponseResult;
 import com.jd.secondproject.dao.UserMapper;
 import com.jd.secondproject.domain.User;
 import com.jd.secondproject.service.UserService;
 import com.jd.secondproject.vo.UserVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +20,8 @@ import java.io.UnsupportedEncodingException;
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private UserMapper userMapper ;
 
@@ -52,5 +57,40 @@ public class UserServiceImpl implements UserService {
         return valueProperties;
     }
 
+    @Override
+    public ResponseResult modelJD(Integer parameter) {
+        logger.info("###zzy###zzy###zzy###zzy\n\n" +
+                "###zzy###zzy###zzy###zzy\n\n" +
+                "###zzy###zzy###zzy###zzy\n\n");
+        //1.校验参数合法性
+        if(parameter == null) {
+            return ResponseResult.paramEmpty() ;
+        }
 
+        //2.开始监控
+        System.out.println("registerInfo");
+        try {
+            if(parameter<0) {
+                //3.业务逻辑
+                return ResponseResult.paramError() ;
+            }
+            if(parameter==0) {
+                //3.业务逻辑
+                return ResponseResult.success() ;
+            }
+            else {
+                //3.业务逻辑
+                return new ResponseResult(ResponseResult.FAILURE, ResponseResult.NO_OPERATE_AUTH) ;
+            }
+        } catch (Exception e) {
+            //4.打日志
+            logger.error("系统异常");
+            //监控报警
+            System.out.println("functionError");
+        } finally {
+            //结束监控
+            System.out.println("registerInfoEnd");
+        }
+        return ResponseResult.failure() ;
+    }
 }

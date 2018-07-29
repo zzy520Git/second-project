@@ -1,5 +1,7 @@
 package com.jd.secondproject.web.controller;
 
+import com.jd.secondproject.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,9 @@ public class ModelController {
      * @RequestParam用于参数绑定、@ModelAttribute用于数据回显
      */
 
+    @Autowired(required = false)
+    private UserService userService ;
+
     @Value("${org.spring.version.key}")
     private String testValue ;
 
@@ -36,6 +41,7 @@ public class ModelController {
         System.out.println("testValue:" + testValue);
         model.addAttribute("key", "value") ;
         System.out.println("间接请求参数:" + request.getParameter("id"));
+        userService.modelJD(null) ;
         return "index" ;
     }
 

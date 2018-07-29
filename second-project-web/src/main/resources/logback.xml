@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <!-- 控制台输出 -->
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder><pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern></encoder>
+  </appender>
+  <appender name="jd_zzy" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- /export/Logs/man-yao.jd.local/yao_man.log -->
+    <file>E:/Program Data/ideaCompile/logs/jd_zzy_model.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- /export/Logs/man-yao.jd.local/yao_man.log.%d{yyyy-MM-dd} -->
+      <fileNamePattern>E:/Program Data/ideaCompile/logs/jd_zzy_model.log.%d{yyyy-MM-dd}</fileNamePattern>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+    </layout>
+  </appender>
+
+  <!-- 根据需要配置多个appender和logger -->
+  <appender name="service_zzy" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>E:/Program Data/ideaCompile/logs/jd_zzy_service.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- /export/Logs/man-yao.jd.local/yao_rpc.log.%d{yyyy-MM-dd} -->
+      <fileNamePattern>E:/Program Data/ideaCompile/logs/jd_zzy_service.log.%d{yyyy-MM-dd}</fileNamePattern>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+    </layout>
+  </appender>
+  <logger name="com.jd.secondproject.service" additivity="false" level="INFO">
+    <appender-ref ref="service_zzy" />
+    <!-- 生产环境去掉stdout -->
+    <appender-ref ref="stdout" />
+  </logger>
+
+  <root level="info">
+    <appender-ref ref="stdout" />
+    <!-- 视情况可要可不要jd_zzy -->
+    <appender-ref ref="jd_zzy" />
+  </root>
+
+</configuration>
