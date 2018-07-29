@@ -130,13 +130,12 @@
       <version>1.16.6</version>
     </dependency>
 
-    <!-- json处理
+    <!-- json处理 Java对象转字符串可以用JSONObject.toJSONString(obj) -->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>1.2.12</version>
     </dependency>
-    -->
     <!-- JSON转换和处理 -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>

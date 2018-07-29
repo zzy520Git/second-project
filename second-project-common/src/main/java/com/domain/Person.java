@@ -19,4 +19,12 @@ public class Person {
      * true为男性，否则为女性
      */
     private boolean sex ;
+    public Person() {}
+    public Person(String n, int val) {
+        this.name = n ;
+        this.age = val ;
+    }
+    public Person(String n) {
+        this.name = n ;
+    }
 }

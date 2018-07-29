@@ -14,7 +14,6 @@
   <name>second-project-common</name>
   <url>http://maven.apache.org</url>
 
-
   <build>
     <finalName>${project.artifactId}</finalName>
   </build>
