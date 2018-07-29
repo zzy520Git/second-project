@@ -97,6 +97,7 @@
       <version>1.2.17</version>
     </dependency>
     -->
+    <!-- 转接commons-logging和log4j -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
@@ -108,6 +109,7 @@
       <artifactId>logback-classic</artifactId>
       <version>1.2.3</version>
     </dependency>
+    <!-- 允许http访问日志 -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-access</artifactId>
@@ -183,6 +185,10 @@
       <version>3.1.0</version>
       <scope>provided</scope>
     </dependency>
+
+    <!--
+    UMP+JSF+JMQ+JIM+IMAGE+XSS+quartz+<httpclient>
+    -->
 
     <!-- 单元测试 -->
     <dependency>
