@@ -40,6 +40,7 @@ public class JsonStringConverterMain {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        System.out.println(JSONObject.toJSONString(null));
+        System.out.println(JSONObject.parseObject(null, JsonObjectTemplate.class));
     }
 }
