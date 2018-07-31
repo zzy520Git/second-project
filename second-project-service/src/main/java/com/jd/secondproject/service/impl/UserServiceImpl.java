@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
             }
             else {
                 //3.业务逻辑
-                return new ResponseResult(ResponseResult.FAILURE, ResponseResult.NO_OPERATE_AUTH) ;
+                return ResponseResult.newInstance().setCode(ResponseResult.FAILURE).setDesc(ResponseResult.NO_OPERATE_AUTH) ;
             }
         } catch (Exception e) {
             //4.打日志

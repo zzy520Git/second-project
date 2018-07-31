@@ -1,7 +1,6 @@
 package com.common;
 
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Description:
@@ -24,15 +23,26 @@ public class ResponseResult<T> {
     public static final String NO_OPERATE_AUTH = "操作权限不够";
 
     //field
-    @Setter
     @Getter
     private int code ;
-    @Setter
+    public ResponseResult setCode(int code) {
+        this.code = code ;
+        return this ;
+    }
+
     @Getter
     private String desc ;
-    @Setter
+    public ResponseResult setDesc(String desc) {
+        this.desc = desc ;
+        return this ;
+    }
+
     @Getter
     private T value ;
+    public ResponseResult setValue(T value) {
+        this.value = value ;
+        return this ;
+    }
 
     public ResponseResult() {
     }
@@ -46,6 +56,9 @@ public class ResponseResult<T> {
         this.value = value;
     }
 
+    public static ResponseResult newInstance(){
+        return new ResponseResult();
+    }
     public static ResponseResult success(){
         return new ResponseResult(SUCCESS, SUCCESS_DESC);
     }
