@@ -44,8 +44,8 @@
     <property name="prefix" value="/"/><!-- 可省默认值，不要更改-->
     <property name="suffix" value=".vm"/>
     <property name="contentType" value="text/html;charset=UTF-8"/>
-    <property name="dateToolAttribute" value="date"/><!--日期函数名称 -->
-    <property name="numberToolAttribute" value="number"/><!--数字函数名称 -->
+    <property name="dateToolAttribute" value="dateTool"/><!--日期函数名称 -->
+    <property name="numberToolAttribute" value="numberTool"/><!--数字函数名称 -->
     <property name="exposeSpringMacroHelpers" value="true"/><!--是否使用spring对宏定义的支持 -->
     <property name="exposeRequestAttributes" value="true"/><!--是否开放request属性 -->
     <property name="requestContextAttribute" value="rc"/><!--request属性引用名称 -->
@@ -95,6 +95,18 @@
     </property>
   </bean>
   -->
+
+  <!-- exception related -->
+  <!-- all exception handler will be registered by DispatcherServlet default (detectAllHandlerExceptionResolvers=true) -->
+  <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <property name="defaultErrorView" value="error/error" />
+    <property name="exceptionMappings">
+      <props>
+        <prop key="java.lang.Exception">error/error-500</prop>
+        <prop key="java.lang.Throwable">error/error-500</prop>
+      </props>
+    </property>
+  </bean>
 
 
 </beans>

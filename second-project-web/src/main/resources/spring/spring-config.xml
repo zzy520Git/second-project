@@ -3,8 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/mvc
@@ -29,5 +32,14 @@
 
     <!--引入Spring配置文件-->
     <import resource="spring-config-dao.xml"/>
+
+    <!-- 配置List和Map类型的Bean -->
+    <util:list id="listbeanID">
+      <value>admin</value>
+    </util:list>
+    <util:map id="mapBeanID">
+      <entry key="ik" value="mmp"/>
+      <entry key="ik1" value="mmp"/>
+    </util:map>
 
 </beans>
