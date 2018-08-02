@@ -18,6 +18,11 @@
       <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <!-- 该注解主要用于激活Bean上的注解，注意必须已注册为Bean，该配置可被component-scan取代 -->
+    <!--
+    <context:annotation-config/>
+    -->
+
     <mvc:annotation-driven/>
 
     <!--加载配置文件-->
