@@ -3,6 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -11,17 +12,23 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/mvc
-    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 不扫描Controller -->
     <context:component-scan base-package="com.jd.secondproject">
       <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <!-- 启动@AspectJ支持,如果是cglib则要为true -->
+    <aop:aspectj-autoproxy proxy-target-class="false"/>
     <!-- 该注解主要用于激活Bean上的注解，注意必须已注册为Bean，该配置可被component-scan取代 -->
-    <!--
     <context:annotation-config/>
-    -->
+    <!-- 激活监控注解AOP -->
+    <bean class="com.annotation.JAnnotation">
+      <property name="appName" value=""/>
+    </bean>
 
     <mvc:annotation-driven/>
 
