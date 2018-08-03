@@ -21,7 +21,8 @@
       <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!-- 启动@AspectJ支持,如果是cglib则要为true -->
+    <!-- 启动@AspectJ支持,是否强制使用CGLIB代理：proxy-target-class为true即可 -->
+    <!-- proxy-target-class默认为false，用法见com.annotation.JAnnotation的getMethod方法 -->
     <aop:aspectj-autoproxy proxy-target-class="false"/>
     <!-- 该注解主要用于激活Bean上的注解，注意必须已注册为Bean，该配置可被component-scan取代 -->
     <context:annotation-config/>

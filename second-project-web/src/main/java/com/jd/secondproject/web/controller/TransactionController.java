@@ -38,7 +38,8 @@ public class TransactionController {
     @RequestMapping("/queryByManager")
     public ModelAndView queryByManager() {
         UserVo result = userService.queryById(1) ;
-        userManager.testTransaction();
+        //userManager.testTransaction();
+        userManager.testAnnotation() ;
         System.out.println(result.getUsername());
         ModelAndView modelAndView = new ModelAndView("index") ;
         System.out.println("啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊\n\n啊啊啊啊啊啊啊啊啊啊啊啊");

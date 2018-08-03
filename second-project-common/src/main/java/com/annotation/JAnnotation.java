@@ -30,10 +30,18 @@ public class JAnnotation {
     public void JAnnotationPoint() {
     }
 
-    private Method getMethod(JoinPoint jp) throws Exception {
+    //调用该方法时：配置文件中proxy-target-class="true"必须要设置
+    private Method getMethod1(JoinPoint jp) throws Exception {
         MethodSignature msig = (MethodSignature)jp.getSignature();
         Method method = msig.getMethod();
         return method;
+    }
+    //调用该方法时：配置文件中proxy-target-class可省略或者为false
+    private Method getMethod(JoinPoint jp) throws Exception {
+        MethodSignature msig = (MethodSignature)jp.getSignature();
+        Method realMethod = jp.getTarget().getClass().getDeclaredMethod(msig.getName(),
+                msig.getMethod().getParameterTypes()) ;
+        return realMethod;
     }
     private boolean isBlank(String value) {
         return null == value || "".equals(value.trim());

@@ -56,6 +56,11 @@ public class UserManagerImpl implements UserManager{
             return "fail" ;
         }
         try {
+            User user = new User() ;
+            user.setId(100L);
+            user.setUsername("china###japan");
+            userMapper.insert(user) ;
+            userMapper.insert(user) ;
             //业务逻辑1
             //可以打印日志
             //业务逻辑2
