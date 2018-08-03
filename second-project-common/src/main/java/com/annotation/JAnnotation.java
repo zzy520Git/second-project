@@ -6,6 +6,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.Method;
 
@@ -16,6 +18,7 @@ import java.lang.reflect.Method;
  * @date 2018/8/3 17:50
  */
 @Aspect
+@Order(value = Ordered.LOWEST_PRECEDENCE)
 public class JAnnotation {
     private String appName;
 

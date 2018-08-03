@@ -7,6 +7,7 @@ import com.jd.secondproject.domain.User;
 import com.jd.secondproject.manager.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 /**
@@ -48,6 +49,7 @@ public class UserManagerImpl implements UserManager{
      */
     @Override
     @JMonitor(jKey = "com.jd.secondproject.manager.impl.UserManagerImpl.testAnnotation", jAppName = "second-project")
+    @Transactional(rollbackFor = Exception.class, readOnly = false)
     public String testAnnotation() {
         //业务逻辑校验
         if(System.currentTimeMillis() < 1000) {
