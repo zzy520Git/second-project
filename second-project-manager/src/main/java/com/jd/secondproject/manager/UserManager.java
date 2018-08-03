@@ -5,4 +5,6 @@ package com.jd.secondproject.manager;
  */
 public interface UserManager {
     String testTransaction() ;
+
+    String testAnnotation() ;
 }

@@ -1,5 +1,7 @@
 package com.jd.secondproject.manager.impl;
 
+import com.annotation.JMonitor;
+import com.exception.BusinessException;
 import com.jd.secondproject.dao.UserMapper;
 import com.jd.secondproject.domain.User;
 import com.jd.secondproject.manager.UserManager;
@@ -38,5 +40,28 @@ public class UserManagerImpl implements UserManager{
             }
             return "fail" ;
         });
+    }
+
+    /**
+     * 注意aop织入的顺序
+     * @return
+     */
+    @Override
+    @JMonitor(jKey = "com.jd.secondproject.manager.impl.UserManagerImpl.testAnnotation", jAppName = "second-project")
+    public String testAnnotation() {
+        //业务逻辑校验
+        if(System.currentTimeMillis() < 1000) {
+            return "fail" ;
+        }
+        try {
+            //业务逻辑1
+            //可以打印日志
+            //业务逻辑2
+        } catch (Exception e) {
+            //可以打印日志
+            //处理注解事务和注解监控时，必须手动抛出异常
+            throw BusinessException.asBusinessException() ;
+        }
+        return "fail" ;
     }
 }

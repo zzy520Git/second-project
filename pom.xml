@@ -184,7 +184,7 @@
       <version>2.0</version>
     </dependency>
 
-    <!-- 如果用到request、response或session就加上，但一般不用，可去掉 -->
+    <!-- 如果用到request、response或session就加上 -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>

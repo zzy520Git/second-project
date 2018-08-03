@@ -24,7 +24,7 @@ public class ModelController {
      */
 
     @RequestMapping("/paramBind")
-    public void paramBind(@RequestParam("username") String name, @ModelAttribute("p") Person person) {
+    public void paramBind(@RequestParam(value = "username", defaultValue = "") String name, @ModelAttribute("p") Person person) {
 
     }
 

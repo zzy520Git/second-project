@@ -96,8 +96,9 @@
   </bean>
   -->
 
-  <!-- exception related -->
-  <!-- all exception handler will be registered by DispatcherServlet default (detectAllHandlerExceptionResolvers=true) -->
+  <!-- 自定义的全局异常处理器 只要实现HandlerExceptionResolver接口就是全局异常处理器，只能存在一个 -->
+  <bean class="com.jd.secondproject.handler.CustomExceptionResolver"/>
+  <!--
   <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
     <property name="defaultErrorView" value="error/error" />
     <property name="exceptionMappings">
@@ -107,6 +108,6 @@
       </props>
     </property>
   </bean>
-
+  -->
 
 </beans>
