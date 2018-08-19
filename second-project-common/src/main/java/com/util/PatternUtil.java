@@ -25,11 +25,11 @@ public class PatternUtil {
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(PASSWORD_PATTERN_STRING) ;
 
     public static boolean checkUsernamePattern(String username) {
-        return USERNAME_PATTERN.matcher(username).matches() ;
+        return (username==null) ? false : USERNAME_PATTERN.matcher(username).matches() ;
         //看input表单能否接受空字符串，记的测试
     }
     public static boolean checkPasswordPattern(String password) {
-        return PASSWORD_PATTERN.matcher(password).matches() ;
+        return (password==null) ? false : PASSWORD_PATTERN.matcher(password).matches() ;
         //看input表单能否接受空字符串，记的测试
     }
 
