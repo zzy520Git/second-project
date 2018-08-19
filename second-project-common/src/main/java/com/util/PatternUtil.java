@@ -34,4 +34,11 @@ public class PatternUtil {
         //input表单值传入后台自动trim，即使不传值(不输入值)也不为空，是空字符串""
     }
 
+    /**
+     * 前端校验方法
+     * var regExp = /^[a-zA-Z][a-zA-Z0-9_]{5,15}$/ ;
+     * var username = "hfasjdf" ;
+     * var bool = regExp.test(username) ;
+     */
+
 }
