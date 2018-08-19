@@ -16,9 +16,6 @@
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!-- 请求默认域名，默认跳转url -->
-    <mvc:view-controller path="/" view-name="redirect:/model/toIndex"/>
-
     <!-- 不扫描Controller -->
     <context:component-scan base-package="com.jd.secondproject">
       <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>

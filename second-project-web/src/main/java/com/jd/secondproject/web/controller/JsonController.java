@@ -1,8 +1,8 @@
 package com.jd.secondproject.web.controller;
 
 import com.jd.secondproject.domain.User;
-import org.springframework.util.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -68,7 +67,8 @@ public class JsonController {
      */
     @RequestMapping(value = "/requestForm", method = RequestMethod.POST)
     public String requestForm(User user, MultipartFile img) {
-        System.out.println(user.getUsername());
+        System.out.println(user.getId());
+        System.out.println(user.getUsername()==null);
 
         //文件上传
         if(img != null) {
@@ -77,8 +77,8 @@ public class JsonController {
                 String suffix = originalFilename.substring(originalFilename.lastIndexOf(".")) ;
                 File f = new File("D:\\"+UUID.randomUUID().toString()+suffix) ;
                 try {
-                    img.transferTo(f);
-                } catch (IOException e) {
+                    //img.transferTo(f);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

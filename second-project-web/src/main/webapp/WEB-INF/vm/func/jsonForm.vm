@@ -64,9 +64,17 @@
 <input type="button" onclick="requestJson(3)" value="测试requestJsonString2Pojo"/><br>
 <form action="/json/requestForm" method="post" enctype="multipart/form-data">
     <label>用户ID</label><input type="text" name="id" value="$!{user.id}"/>
-    <label>用户名</label><input type="text" name="username" value="$!{user.username}"/>
-    <label>密码</label><input type="password" name="password" value="$!{user.password}"/>
+    <label>用户名</label><input id="tu" type="text" name="username" value="$!{user.username}"/>
+    <label>密码</label><input id="pa" type="password" name="password" value="$!{user.password}"/>
     <label>上传证件照</label><input type="file" name="img">
     <input type="submit" value="提交表单"/>
 </form>
+
+<script>
+    $("form")[0].onsubmit = function () {
+        alert("#"+$("#tu").val()+"#") ;
+        alert("#"+$("#pa")[0].value+"#") ;
+        return true ;
+    }
+</script>
 

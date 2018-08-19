@@ -25,6 +25,11 @@
   <mvc:resources mapping="/assets/**" location="/assets/"/>
   -->
 
+  <!-- 请求默认域名，默认跳转url(view-name也可直接为视图名，如"func/jsonForm") -->
+  <!-- 注意，该配置生效必须webapp根目录没有index.html或index.jsp等 -->
+  <!-- 可改用RequestMapping("/") -->
+  <mvc:view-controller path="/" view-name="redirect:/model/toIndex"/>
+
   <!-- 只扫描Controller -->
   <context:component-scan base-package="com.jd.secondproject.web.controller"/>
 

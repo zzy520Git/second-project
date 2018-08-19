@@ -26,11 +26,12 @@ public class PatternUtil {
 
     public static boolean checkUsernamePattern(String username) {
         return (username==null) ? false : USERNAME_PATTERN.matcher(username).matches() ;
-        //看input表单能否接受空字符串，记的测试
+        //input表单值传入后台自动trim，即使不传值(不输入值)也不为空，是空字符串""
+        //注意：前端输入什么值，前端的表单值依然是什么值，只是传入后台会自动trim
     }
     public static boolean checkPasswordPattern(String password) {
         return (password==null) ? false : PASSWORD_PATTERN.matcher(password).matches() ;
-        //看input表单能否接受空字符串，记的测试
+        //input表单值传入后台自动trim，即使不传值(不输入值)也不为空，是空字符串""
     }
 
 }
