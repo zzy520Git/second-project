@@ -20,7 +20,27 @@ public class HandlerInterceptor1 implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
         //return false表示拦截，不向下执行
         //return true表示放行
-        return true;
+        String requestURI = request.getRequestURI();
+        StringBuffer requestURL = request.getRequestURL();
+        System.out.println(requestURI);
+        System.out.println(requestURL);
+//        if(requestURI.indexOf("如果是公开地址")>0) {
+//            //放行
+//            return true ;
+//        }
+        //如果单点已登录
+        if(true) {
+            //保存登录信息，并放行
+            return true;
+        } else {
+            //跳转到登录页面
+            try {
+                request.getRequestDispatcher("/model/toIndex").forward(request, response);
+            } catch (Exception e) {
+
+            }
+        }
+        return true ;
     }
 
     //进入Handler方法之后，返回modelAndView之前执行
