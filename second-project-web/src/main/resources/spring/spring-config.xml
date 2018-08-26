@@ -55,4 +55,26 @@
       <entry key="ik1" value="mmp"/>
     </util:map>
 
+    <bean id="modelJob" class="com.util.QuartzJob"/>
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+      <property name="targetObject">
+        <ref bean="modelJob"/>
+      </property>
+      <property name="targetMethod">
+        <value>execute</value>
+      </property>
+    </bean>
+    <bean id="jobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+      <property name="jobDetail" ref="jobDetail"/>
+      <!-- 可以用在线cron表达式生成器 -->
+      <property name="cronExpression" value="0/2 * * * * ?"/>
+    </bean>
+    <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+      <property name="triggers">
+        <list>
+          <ref bean="jobTrigger"/>
+        </list>
+      </property>
+    </bean>
+
 </beans>
