@@ -66,6 +66,13 @@
       <property name="maxUploadSize" value="400000000"/>
   </bean>
 
+  <bean id="ssoHelper" class="com.util.SSOHelper">
+    <property name="excludePath" value="www.zzy.com,mail.zzy.com"/>
+    <property name="cacheSize" value="5"/>
+    <property name="ssoEnabled" value="true"/>
+    <!-- 还有其他字段属性可设置 -->
+  </bean>
+
   <!-- 拦截器 -->
   <mvc:interceptors>
     <!--多个拦截器,顺序执行 -->
@@ -86,6 +93,16 @@
       <!-- 这样引用拦截器也可以
       <bean ref="beanId"/>
       -->
+    </mvc:interceptor>
+    <mvc:interceptor>
+      <mvc:mapping path="/**"/>
+      <mvc:exclude-mapping path="/assets/**"/>
+      <mvc:exclude-mapping path="/css/**"/>
+      <mvc:exclude-mapping path="/js/**"/>
+      <mvc:exclude-mapping path="/favicon.ico"/>
+      <bean class="com.util.SSOInterceptor">
+        <property name="ssoHelper" ref="ssoHelper"/>
+      </bean>
     </mvc:interceptor>
   </mvc:interceptors>
 

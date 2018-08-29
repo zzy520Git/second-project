@@ -18,28 +18,6 @@ public class HandlerInterceptor1 implements HandlerInterceptor {
     //比如身份认证，如果认证通过表示当前用户没有登陆，需要此方法拦截不再向下执行
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
-        //return false表示拦截，不向下执行
-        //return true表示放行
-        String requestURI = request.getRequestURI();
-        StringBuffer requestURL = request.getRequestURL();
-        System.out.println(requestURI);
-        System.out.println(requestURL);
-//        if(requestURI.indexOf("如果是公开地址")>0) {
-//            //放行
-//            return true ;
-//        }
-        //如果单点已登录
-        if(true) {
-            //保存登录信息，并放行
-            return true;
-        } else {
-            //跳转到登录页面
-            try {
-                request.getRequestDispatcher("/model/toIndex").forward(request, response);
-            } catch (Exception e) {
-
-            }
-        }
         return true ;
     }
 

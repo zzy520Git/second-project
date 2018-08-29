@@ -45,6 +45,7 @@
 
     <!--引入Spring配置文件-->
     <import resource="spring-config-dao.xml"/>
+    <import resource="spring-config-bean.xml"/>
 
     <!-- 配置List和Map类型的Bean -->
     <util:list id="listbeanID">
