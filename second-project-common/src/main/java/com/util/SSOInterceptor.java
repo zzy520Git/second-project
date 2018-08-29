@@ -26,11 +26,15 @@ public class SSOInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         this.log(request, response);
-        String ip = ssoHelper.getRemoteIP(request) ;
         if(isExclude(request)) {
             return true ;
+        } else {
+            LoginContext context = this.getLoginContext(request);
+            if (context == null) {
+                ssoHelper.toLoginPage(request, response);
+                return false;
+            }
         }
-        //TODO
         return true;
     }
 
@@ -41,7 +45,7 @@ public class SSOInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
+        LoginContext.remove();
     }
 
     private boolean isExclude(HttpServletRequest request) {
@@ -58,7 +62,20 @@ public class SSOInterceptor implements HandlerInterceptor {
         return false ;
     }
 
+    private LoginContext getLoginContext(HttpServletRequest request) {
+        if(ssoHelper.validateToken(request)) {
+            LoginContext context = ssoHelper.getLoginContextFromCache(request) ;
+            if(context==null) {
+                context = ssoHelper.getLoginContextFromRedis(request) ;
+            }
+            return context ;
+        } else {
+            return null ;
+        }
+    }
+
     private void log(HttpServletRequest request, HttpServletResponse response) {
         logger.warn("client request URL={}", request.getRequestURL());
+        logger.warn("client request ServerName={}", request.getServerName());
     }
 }

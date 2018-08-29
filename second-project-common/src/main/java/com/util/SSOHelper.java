@@ -5,12 +5,14 @@ import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.DigestUtils;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
@@ -29,7 +31,10 @@ public class SSOHelper {
     private String domain = ".zzy.com" ;
     private String excludePath = "" ;
     private int cacheSize = 10;
-    private boolean ssoEnabled = false ;
+    /**
+     * 是否打开单点登录
+     */
+    private boolean ssoEnabled = true ;
 
     //不支持依赖注入
     private List<String> excludePathCache;
@@ -114,6 +119,58 @@ public class SSOHelper {
             cookie.setMaxAge(maxAge);
             response.addCookie(cookie);
         }
+    }
+
+    public String getTokenValue(HttpServletRequest request) {
+        final String ticket = this.tokenKey + ":" + this.getRemoteIP(request) ;
+        String tokenValue = null ;
+        try {
+            tokenValue = DigestUtils.md5DigestAsHex(ticket.getBytes("UTF-8")) ;
+        } catch (UnsupportedEncodingException e) {
+            logger.error("getTokenValue UnsupportedEncodingException:ticket={},tokenValue={}", ticket, tokenValue);
+        }
+        logger.warn("getTokenValue:ticket={},tokenValue={}", ticket, tokenValue);
+        return tokenValue ;
+    }
+
+    public boolean validateToken(HttpServletRequest request) {
+        String tokenValue = this.getTokenValue(request) ;
+        //TODO 开关
+        if(!ssoEnabled) {
+            return true ;
+        }
+        if(StringUtils.isNotBlank(tokenValue)) {
+            return tokenValue.equals(this.getCookie(request, this.tokenKey)) ;
+        }
+        return false ;
+    }
+
+    private String getUserFromCache(String token) {
+        return this.loginCache.get(token) ;
+    }
+
+    public LoginContext getLoginContextFromCache(HttpServletRequest request) {
+        LoginContext context = new LoginContext();
+        String username = this.getUserFromCache(this.getTokenValue(request)) ;
+        if(username == null) {
+            logger.warn("本地缓存找不到登陆信息");
+            return null ;
+        }
+        //TODO
+        //如果username已经过期，返回null，这里是永不过期
+        context.setUsername(username);
+        LoginContext.setLoginContext(context);
+        return context ;
+    }
+
+    public LoginContext getLoginContextFromRedis(HttpServletRequest request) {
+        //TODO
+        /**
+         * 单点登录处理，调用RPC服务查Redis
+         */
+        logger.warn("单点登录处理，调用RPC服务查Redis,并加入本地缓存");
+        this.loginCache.put(this.getTokenValue(request), "hello world") ;
+        return this.getLoginContextFromCache(request) ;
     }
 
     private String getSSOLoginUrl(HttpServletRequest request) {

@@ -68,9 +68,9 @@
 
   <bean id="ssoHelper" class="com.util.SSOHelper">
     <!-- 当前/配置代表不拦截任何请求 -->
-    <property name="excludePath" value="/,/css"/>
+    <property name="excludePath" value="/js,/css"/>
     <property name="cacheSize" value="5"/>
-    <property name="ssoEnabled" value="true"/>
+    <property name="ssoEnabled" value="false"/>
     <!-- 还有其他字段属性可设置 -->
   </bean>
 

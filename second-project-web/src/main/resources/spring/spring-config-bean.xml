@@ -4,7 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
-
+    <!-- redis -->
+    <!--
+    <bean id="jimClient" class="com.jd.jim.cli.compat.ReloadableJimClientFactoryBean">
+      <property name="configId" value="${jimdb.redis.configId}"/>
+      <property name="token" value="${jimdb.redis.token}"/>
+    </bean>
+    <bean id="redisUtil" class="com.util.RedisUtil">
+      <property name="cluster" ref="jimClient"/>
+    </bean>
+    -->
 
 </beans>

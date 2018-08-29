@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jsf="http://jsf.jd.com/schema/jsf"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://jsf.jd.com/schema/jsf
+      http://jsf.jd.com/schema/jsf/jsf.xsd">
+
+  <!-- 注册中心 -->
+  <jsf:registry id="jsfRegistry" protocol="jsfRegistry" index="i.jsf.jd.com"/>
+  <!-- 服务端 -->
+  <jsf:server id="jsf" protocol="jsf"/>
+
+  <!-- 服务消费者 -->
+  <!--
+  <jsf:consumer lazy="true" id="ssoService" interface="com.zzy.SSOService"
+                protocol="jsf" alias="${sso.jsf.alias}" timeout="毫秒" retries="3"/>
+                -->
+  <!-- 服务生产者 -->
+  <!--
+  <jsf:provider id="ssoServiceJSF" interface="com.zzy.SSOServiceJsf"
+                alias="${ssojsf.jsf.alias}" ref="ssoServiceJsf" server="jsf"/>
+  -->
+</beans>
