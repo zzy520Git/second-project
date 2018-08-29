@@ -43,7 +43,7 @@ public class SSOHelper {
     public String getRemoteIP(HttpServletRequest request) {
         String ip = request.getHeader("J-Forwarded-For");
         if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
-            logger.info("request from client remoteIP={}!", ip);
+            logger.warn("request from client remoteIP={}", ip);
             return ip;
         } else {
             ip = request.getHeader("X-Forwarded-For");
@@ -62,13 +62,13 @@ public class SSOHelper {
                     ip = ip.substring(0, position);
                 }
             }
-            logger.info("request from client remoteIP={}!", ip);
+            logger.warn("request from client remoteIP={}", ip);
             return ip;
         }
     }
 
     public void logout(HttpServletResponse response) {
-        logger.info("client is logout!");
+        logger.warn("client is logout");
         Cookie cookie = new Cookie(tokenKey,null);
         if (domain != null && !"".equals(domain.trim())) {
             cookie.setDomain(domain);
@@ -83,7 +83,7 @@ public class SSOHelper {
         if(cookies != null && cookies.length>0) {
             for(Cookie cookie : cookies) {
                 if(name.equals(cookie.getName())) {
-                    logger.info("Cookie name={},value={}!", name, cookie.getValue());
+                    logger.warn("Cookie name={},value={}", name, cookie.getValue());
                     return cookie.getValue() ;
                 }
             }
@@ -97,7 +97,7 @@ public class SSOHelper {
             response.setHeader("Location", this.getSSOLoginUrl(request));
         } else {
             String ssoLoginUrl = this.getSSOLoginUrl(request) ;
-            logger.info("to ssoLoginUrl={}!", ssoLoginUrl);
+            logger.warn("to ssoLoginUrl={}", ssoLoginUrl);
             response.sendRedirect(ssoLoginUrl);
         }
     }
@@ -123,7 +123,7 @@ public class SSOHelper {
 
     @PostConstruct
     private void init() {
-        logger.info("init excludePath={}!", this.excludePath);
+        logger.warn("init excludePath={}", this.excludePath);
         if(StringUtils.isNotBlank(this.excludePath)) {
             this.excludePathCache = new ArrayList<>();
             String[] path = excludePath.split(",");
@@ -137,7 +137,7 @@ public class SSOHelper {
                 return this.size() > SSOHelper.this.cacheSize;
             }
         });
-        logger.info("init loginCache finished!");
+        logger.warn("init loginCache finished");
     }
 
 }

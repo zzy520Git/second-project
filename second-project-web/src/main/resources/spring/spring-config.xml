@@ -68,7 +68,7 @@
     <bean id="jobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
       <property name="jobDetail" ref="jobDetail"/>
       <!-- 可以用在线cron表达式生成器 -->
-      <property name="cronExpression" value="0/2 * * * * ?"/>
+      <property name="cronExpression" value="0/8 * * * * ?"/>
     </bean>
     <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
       <property name="triggers">

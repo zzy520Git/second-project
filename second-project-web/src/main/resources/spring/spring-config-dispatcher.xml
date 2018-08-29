@@ -67,7 +67,8 @@
   </bean>
 
   <bean id="ssoHelper" class="com.util.SSOHelper">
-    <property name="excludePath" value="www.zzy.com,mail.zzy.com"/>
+    <!-- 当前/配置代表不拦截任何请求 -->
+    <property name="excludePath" value="/,/css"/>
     <property name="cacheSize" value="5"/>
     <property name="ssoEnabled" value="true"/>
     <!-- 还有其他字段属性可设置 -->
@@ -99,7 +100,6 @@
       <mvc:exclude-mapping path="/assets/**"/>
       <mvc:exclude-mapping path="/css/**"/>
       <mvc:exclude-mapping path="/js/**"/>
-      <mvc:exclude-mapping path="/favicon.ico"/>
       <bean class="com.util.SSOInterceptor">
         <property name="ssoHelper" ref="ssoHelper"/>
       </bean>

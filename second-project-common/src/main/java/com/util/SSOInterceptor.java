@@ -46,11 +46,11 @@ public class SSOInterceptor implements HandlerInterceptor {
 
     private boolean isExclude(HttpServletRequest request) {
         String uri = request.getRequestURI() ;
-        logger.info("client request URI={}!", uri);
+        logger.warn("client request URI={}", uri);
         if(ssoHelper.getExcludePathCache()!=null && !ssoHelper.getExcludePathCache().isEmpty()) {
             for(String path : ssoHelper.getExcludePathCache()) {
                 if(uri.startsWith(path)) {
-                    logger.info("client request URI startsWith path={}!", path);
+                    logger.warn("client request URI startsWith path={}", path);
                     return true ;
                 }
             }
@@ -59,6 +59,6 @@ public class SSOInterceptor implements HandlerInterceptor {
     }
 
     private void log(HttpServletRequest request, HttpServletResponse response) {
-        logger.info("client request URL={}!", request.getRequestURL());
+        logger.warn("client request URL={}", request.getRequestURL());
     }
 }
