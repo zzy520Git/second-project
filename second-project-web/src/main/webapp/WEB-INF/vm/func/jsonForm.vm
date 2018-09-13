@@ -56,9 +56,27 @@
                 }
             });
         }
+        else if(param == 0) {
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: "/json/abctest",
+                data: {
+                    id:888,
+                    text:JSON.stringify([{id:1, useId:1},{id:2, useId:2}])
+                },
+                dataType: "json",
+                success: function (data) {
+                    alert(data+"aaa") ;
+                },
+                error: function () {
+                    alert("ajax请求失败") ;
+                }
+            });
+        }
     }
 </script>
-
+<input type="button" onclick="requestJson(0)" value="abctest"/><br>
 <input type="button" onclick="requestJson(1)" value="测试requestJson2Pojo"/><br>
 <input type="button" onclick="requestJson(2)" value="测试requestJson2Param"/><br>
 <input type="button" onclick="requestJson(3)" value="测试requestJsonString2Pojo"/><br>

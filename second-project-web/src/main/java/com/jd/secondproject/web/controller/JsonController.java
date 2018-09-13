@@ -1,6 +1,8 @@
 package com.jd.secondproject.web.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jd.secondproject.domain.User;
+import com.main.GuidePrefVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -89,5 +92,14 @@ public class JsonController {
 
         //转发时，请求参数和回显数据都不会丢失
         return "forward:toJson" ;
+    }
+
+    @RequestMapping("/abctest")
+    @ResponseBody
+    public GuidePrefVo test(Long id, String text) {
+        System.out.println(id);
+        List<GuidePrefVo> vos = JSONObject.parseArray(text, GuidePrefVo.class) ;
+        System.out.println(vos);
+        return new GuidePrefVo() ;
     }
 }

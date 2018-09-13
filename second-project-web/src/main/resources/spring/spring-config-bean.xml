@@ -14,5 +14,13 @@
       <property name="cluster" ref="jimClient"/>
     </bean>
     -->
+  <bean id="threadpool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+    <property name="corePoolSize" value="1"/>
+    <property name="maxPoolSize" value="2"/>
+    <property name="keepAliveSeconds" value="60"/>
+    <property name="queueCapacity" value="10"/>
+    <property name="threadFactory" ref="threadFactory"/>
+  </bean>
+  <bean id="threadFactory" class="com.jd.secondproject.service.impl.MyThreadFactory"/>
 
 </beans>
