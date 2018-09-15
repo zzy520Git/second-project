@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jd.secondproject.dao.UpdatelistMapper" >
+
+  <select id="queryTest" resultType="com.jd.secondproject.domain.Updatelist">
+    SELECT id, upc, concat_ws('#', md5, upc) name from updatelist
+    WHERE status=1
+    <if test="bool==true">
+      and upc IS NOT NULL
+    </if>
+    <if test="bool==false">
+      and name IS NOT NULL
+    </if>
+    <foreach collection="list" item="item" separator="," open="and concat_ws('#', md5, upc) in(" close=")">
+      #{item}
+    </foreach>
+  </select>
+
+</mapper>

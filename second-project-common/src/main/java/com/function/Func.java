@@ -27,4 +27,7 @@ interface Consumer<T> {
 interface Predicate<T> {
     boolean test(T t) ;
 }
+interface Supplier<T> {
+    T get() ;
+}
  */
