@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 /**
  * Description：
  *
@@ -18,9 +21,13 @@ public class TestController {
     @Autowired
     private TestService testService ;
 
+    @Resource
+    private List<String> listbeanID ;
+
     @RequestMapping("requestAsync")
     public String requestAsync() {
-        testService.testAsync();
+        List l = listbeanID ;
+        //testService.testAsync();
         return "func/jsonForm" ;
     }
 
