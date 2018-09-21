@@ -1,7 +1,8 @@
 package com.main;
 
+import com.util.HolidayUtil;
+
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Description：
@@ -29,19 +30,21 @@ public class TestMain {
 //        ReentrantLock lock = new ReentrantLock() ;
 //        LinkedBlockingQueue q = new LinkedBlockingQueue(1) ;
 //        LockSupport s ;
-        Lock lock = new ReentrantLock() ;
-        new MyThreadAqs(0, lock).start();
-        Thread.sleep(500);
-        for(int i=1 ; i<10 ; i++) {
-            new MyThreadAqs(i, lock).start();
-            try {
-                if(i<5) {
-                    Thread.sleep(500);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+//        Lock lock = new ReentrantLock() ;
+//        new MyThreadAqs(0, lock).start();
+//        Thread.sleep(500);
+//        for(int i=1 ; i<10 ; i++) {
+//            new MyThreadAqs(i, lock).start();
+//            try {
+//                if(i<5) {
+//                    Thread.sleep(500);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+        System.out.println(HolidayUtil.solarToLunar("20220708"));
+
     }
 }
 class MyThreadAqs extends Thread{
