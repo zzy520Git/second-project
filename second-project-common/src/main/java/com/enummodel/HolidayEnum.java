@@ -10,19 +10,19 @@ import lombok.Getter;
  */
 public enum HolidayEnum {
     /**
-    元旦节;
-    情人节;
-    除夕;
-    春节;
-    元宵节;
+    元旦节;New years
+    情人节;Valentine's Day
+    除夕;YearEve
+    春节;Chinese New Year
+    元宵节;Lantern Festival
     妇女节;
-    清明节;
+    清明节;Ching Ming Festival
     儿童节;
-    端午节;
-    七夕节;
-    教师节;
-    中秋节;
-    圣诞节;
+    端午节;Dragon Boat Festival
+    七夕节;Qixi Festival
+    教师节;Teachers' Day
+    中秋节;Mid-Autumn Festival
+    圣诞节;Christmas
 */
 
     /**
